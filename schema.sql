@@ -58,7 +58,7 @@ CREATE TABLE `gobi`.`warehouse`
 
 # create warehouse_order table: store warehouses' orders for 'warehouse fufillment'
 CREATE TABLE `gobi`.`warehouse_order` (
-  `warehouse_order_id` INT NOT NULL AUTO_INCREMENT,
+  `warehouse_order_id` INT NOT NULL,
   `warehouse_id` INT NOT NULL,
   `order_date` DATE NOT NULL,
   `received_date` DATE NULL,
@@ -70,7 +70,6 @@ CREATE TABLE `gobi`.`warehouse_order` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
     
-
 # create product table: store product information
 CREATE TABLE `gobi`.`product` (
   `product_id` INT NOT NULL,
