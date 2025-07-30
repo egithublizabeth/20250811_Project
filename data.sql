@@ -10,9 +10,6 @@ INSERT INTO `gobi`.`state`(state_name) VALUES('CO');
 INSERT INTO `gobi`.`state`(state_name) VALUES('IL');
 INSERT INTO `gobi`.`state`(state_name) VALUES('GA');
 
-# ***sanity checks***
-# select * from `gobi`.`state`;
-
 ################################################
 # insert data into city table (table 2 of 7)
 ################################################
@@ -21,9 +18,6 @@ INSERT INTO `gobi`.`city`(city_name, state_id) VALUES('Boulder', 2);
 INSERT INTO `gobi`.`city`(city_name, state_id) VALUES('Chicago', 3);
 INSERT INTO `gobi`.`city`(city_name, state_id) VALUES('Atlanta', 4);
 
-# ***sanity checks***
-# SELECT * FROM `gobi`.`city`;
-
 ################################################
 #insert data into warehouse table (table 3 of 7)
 ################################################
@@ -31,9 +25,6 @@ INSERT INTO `gobi`.`warehouse`(warehouse_id, city_id) VALUES(563, 1);
 INSERT INTO `gobi`.`warehouse`(warehouse_id, city_id) VALUES(119, 2);
 INSERT INTO `gobi`.`warehouse`(warehouse_id, city_id) VALUES(256, 3);
 INSERT INTO `gobi`.`warehouse`(warehouse_id, city_id) VALUES(398, 4);
-
-# ***sanity checks***
-# SELECT * FROM `gobi`.`warehouse`;
 
 #####################################################################
 # insert 8 data records into warehouse_order table (table 4 of 7)
@@ -53,9 +44,6 @@ INSERT INTO `gobi`.`warehouse_order`(warehouse_order_id, warehouse_id, order_dat
 INSERT INTO `gobi`.`warehouse_order`(warehouse_order_id, warehouse_id, order_date, received_date) VALUES(2, 256, '2025-07-05', '2025-07-16');
 INSERT INTO `gobi`.`warehouse_order`(warehouse_order_id, warehouse_id, order_date, received_date) VALUES(7, 256, '2025-06-27', '2025-07-08');
 INSERT INTO `gobi`.`warehouse_order`(warehouse_order_id, warehouse_id, order_date) VALUES(6, 256, '2025-07-24');
-
-# ***sanity checks***
-# select * from `gobi`.`warehouse_order`;
 
 ############################################################
 # insert 100 data records into product table (table 5 of 7)
@@ -161,9 +149,6 @@ INSERT INTO `gobi`.`product` (product_id, product_name, price) VALUES (1733, 'Ki
 INSERT INTO `gobi`.`product` (product_id, product_name, price) VALUES (416, 'Cauliflower Pizza Crust', 5.99);
 INSERT INTO `gobi`.`product` (product_id, product_name, price) VALUES (7052, 'Digital Stopwatch Timer', 12.99);
 
-# ***sanity checks***
-# select count(*) as total_count, count(distinct(product_id)) as unique_ids, count(distinct(product_name)) as unique_name from `gobi`.`product`;
-# select * from `gobi`.`product` limit 5;
 
 ##################################################################
 # insert 66 data records into order_products table (table 6 of 7)
@@ -235,77 +220,57 @@ INSERT INTO `gobi`.`order_products`(order_id, product_id, qty) VALUES( 8, 5429, 
 INSERT INTO `gobi`.`order_products`(order_id, product_id, qty) VALUES( 8, 6650, 42);
 INSERT INTO `gobi`.`order_products`(order_id, product_id, qty) VALUES( 8, 6822, 29);
 
-# ***sanity checks***
-# select * from `gobi`.`order_products` limit 10;
-# select count(*) from `gobi`.`order_products`;
-
-# insert data, requirement: at least 20 products total between at least 2 warehouses
-# check the non-null received_date records that need to inserted in to the inventory table
-# SELECT a.warehouse_id, b.*
-# FROM `gobi`.`warehouse_order` AS a
-# INNER JOIN `gobi`.`order_products` AS b
-# ON a.warehouse_order_id = b.order_id
-# WHERE received_date IS NOT NULL
-# ORDER BY a.warehouse_id ASC;
-
 #####################################################################
 # insert 51 data records to warehouse_inventory table (table 7 of 7)
 #####################################################################
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 322, 33, 'LA72', 26, 82 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 436, 33, 'AI70', 13, 81 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 449, 33, 'KE65', 6, 64 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 449, 33, 'AV80', 12, 83 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 645, 33, 'EK14', 31, 90 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 661, 33, 'AC23', 16, 51 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 815, 33, 'QR48', 8, 61 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 815, 33, 'SA95', 16, 73 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 956, 33, 'AV34', 9, 81 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 956, 33, 'DL51', 20, 56 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 1276, 33, 'AI31', 47, 79 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 1501, 33, 'AM66', 30, 71 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 1526, 33, 'SQ35', 7, 90 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 1733, 33, 'ET39', 34, 82 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 1749, 33, 'AA26', 14, 93 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 1764, 33, 'SK78', 33, 82 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 1833, 33, 'IB48', 31, 71 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 2012, 33, 'EK52', 21, 86 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 2234, 33, 'AM81', 40, 94 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 2252, 33, 'CX45', 11, 57 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 2765, 33, 'QF48', 24, 92 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 2913, 33, 'TG67', 37, 60 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 3379, 33, 'UA97', 49, 69 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 3679, 33, 'WN12', 38, 88 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 4001, 33, 'SA72', 21, 53 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 4112, 33, 'EK88', 38, 61 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 4112, 33, 'UA42', 30, 80 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 5237, 33, 'SK72', 15, 55 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 5429, 33, 'EK39', 36, 67 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 6138, 33, 'AZ60', 32, 98 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 6323, 33, 'AI98', 49, 69 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 6572, 33, 'AM78', 18, 97 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 6650, 33, 'TG62', 35, 77 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 6650, 33, 'DL94', 36, 91 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 6822, 33, 'AF66', 29, 74 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 6822, 33, 'AV94', 33, 81 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 6822, 33, 'TG94', 47, 71 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 6962, 33, 'NZ16', 11, 78 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 7052, 33, 'TG42', 15, 51 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 7052, 33, 'BA97', 11, 89 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 7197, 33, 'UA30', 27, 85 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 7197, 33, 'EK45', 35, 62 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 7323, 33, 'NZ94', 20, 91 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 8398, 33, 'AZ78', 19, 76 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 398, 8916, 33, 'AA13', 16, 49 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 9082, 33, 'UA53', 45, 64 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 9602, 33, 'LA11', 23, 57 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 9602, 33, 'CX93', 24, 89 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 119, 9674, 33, 'NH39', 12, 95 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 256, 9674, 33, 'AV11', 31, 77 );
-INSERT INTO `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) VALUES( 563, 9674, 33, 'KE22', 24, 61 );
-
-
-# ***sanity checks***
-# SELECT COUNT(*) FROM `gobi`.`warehouse_inventory` ;
-
-# check to see if we meet the 20 minimum unique product requirement | this table has 39
-# SELECT COUNT(DISTINCT(product_id)) AS unique_product_count FROM `gobi`.`warehouse_inventory`;
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 436, 97, 'AI70', 13, 81 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 1733, 23, 'ET39', 34, 82 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 3679, 57, 'WN12', 38, 88 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 4112, 40, 'UA42', 30, 80 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 7197, 43, 'UA30', 27, 85 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 9082, 72, 'UA53', 45, 64 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 563, 9674, 53, 'KE22', 24, 61 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 449, 72, 'KE65', 6, 64 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 645, 77, 'EK14', 31, 90 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 661, 29, 'AC23', 16, 51 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 2234, 39, 'AM81', 40, 94 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 4001, 33, 'SA72', 21, 53 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 6138, 52, 'AZ60', 32, 98 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 6572, 30, 'AM78', 18, 97 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 6650, 96, 'TG62', 35, 77 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 6822, 90, 'AF66', 29, 74 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 9602, 9, 'CX93', 24, 89 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 9674, 30, 'AV11', 31, 77 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 815, 66, 'QR48', 8, 61 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 1764, 84, 'SK78', 33, 82 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 6822, 65, 'AV94', 33, 81 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 6962, 23, 'NZ16', 11, 78 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 7052, 74, 'TG42', 15, 51 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 7197, 39, 'EK45', 35, 62 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 7323, 63, 'NZ94', 20, 91 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 398, 8916, 2, 'AA13', 16, 49 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 449, 75, 'AV80', 12, 83 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 956, 98, 'AV34', 9, 81 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 1276, 14, 'AI31', 47, 79 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 1749, 90, 'AA26', 14, 93 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 2765, 45, 'QF48', 24, 92 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 2913, 50, 'TG67', 37, 60 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 4112, 63, 'EK88', 38, 61 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 9602, 73, 'LA11', 23, 57 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 9674, 63, 'NH39', 12, 95 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 956, 22, 'DL51', 20, 56 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 1526, 33, 'SQ35', 7, 90 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 1833, 47, 'IB48', 31, 71 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 5237, 15, 'SK72', 15, 55 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 6323, 56, 'AI98', 49, 69 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 7052, 70, 'BA97', 11, 89 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 256, 8398, 85, 'AZ78', 19, 76 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 322, 33, 'LA72', 26, 82 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 815, 80, 'SA95', 16, 73 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 1501, 50, 'AM66', 30, 71 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 2012, 90, 'EK52', 21, 86 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 2252, 2, 'CX45', 11, 57 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 3379, 9, 'UA97', 49, 69 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 5429, 29, 'EK39', 36, 67 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 6650, 15, 'DL94', 36, 91 );
+insert into `gobi`.`warehouse_inventory`(warehouse_id, product_id, product_qty, product_location, product_min_qty, product_max_qty) Values( 119, 6822, 12, 'TG94', 47, 71 );
