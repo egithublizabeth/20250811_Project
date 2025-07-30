@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "817f60dd-d93c-442d-b5e8-11ca295ff177",
+		"name": "Inventory Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45548510"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Find All Products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/labels",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"labels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Product By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/322",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"322"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create One Label",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labelName\": \"<insert value here>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/labels",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"labels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update One Label",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labelName\": \"<insert value here>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/labels/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"labels",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product By ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Warehouse Inventory",
+			"item": [
+				{
+					"name": "Find All Warehouse Inventory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labelName\": \"<insert value here>\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Warehouse Inventory By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"labelName\": \"<insert value here>\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/label-histories/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"label-histories",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create One Label History",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"label\": {\r\n        \"id\": 0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/label-histories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"label-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update One Label History",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/label-histories/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"label-histories",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Label History By ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/label-histories/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"label-histories",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
