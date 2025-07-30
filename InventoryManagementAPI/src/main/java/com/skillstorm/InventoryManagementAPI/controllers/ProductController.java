@@ -1,7 +1,9 @@
 package com.skillstorm.InventoryManagementAPI.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,14 +18,33 @@ import com.skillstorm.InventoryManagementAPI.services.ProductService;
 @RequestMapping("/products") //all requests formated like "localhost:8080/products" ... will route to this controller
 public class ProductController 
 {
-	@Autowired
-	private ProductService service;
+	//injecting a Service bean, instantiate the final variable and set up the only constructor
+	private final ProductService service;
 	
-	//find all labels
-	@GetMapping //this method will handle a GET request to /products with no additional suffix
-	public Iterable<Product> findAllProduct()
+	public ProductController(ProductService service)
+	{
+		this.service = service;
+	}
+	
+	//find all Products with Error Response
+	@GetMapping
+	public ResponseEntity<Iterable<Product>> findAllProduct()
 	{
 		return this.service.findAllProduct();
+	}
+	
+	//find by Product ID with Error Response
+	@GetMapping("/{productId}")
+	public ResponseEntity<Product> findByIDProduct(@PathVariable("productId") int id)
+	{
+		return this.service.findByIDProduct(id);
+	}
+	
+	//delete by Product ID
+	@DeleteMapping("/{productId}")
+	public ResponseEntity<Void> deleteByIdProduct(@PathVariable("productId") int id)
+	{
+		return this.service.deletByIdProduct(id);
 	}
 	
 }
