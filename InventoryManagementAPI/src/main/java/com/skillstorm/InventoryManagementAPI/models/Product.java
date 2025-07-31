@@ -16,10 +16,10 @@ public class Product
 		//table fields/columns/properties
 		@Id                            //primary key
 		@Column
-		private int product_id;        //primary key
+		private int productId;        //primary key
 		
 		@Column
-		private String product_name;
+		private String productName;
 		
 		@Column
 		private double price;
@@ -31,29 +31,27 @@ public class Product
 			// TODO Auto-generated constructor stub
 		}
 
-		public Product(int product_id, String product_name, double price) 
-		{
+		public Product(int productId, String productName, double price) {
 			super();
-			this.product_id = product_id;
-			this.product_name = product_name;
+			this.productId = productId;
+			this.productName = productName;
 			this.price = price;
 		}
 
-		//setters and getters
-		public int getProduct_id() {
-			return product_id;
+		public int getProductId() {
+			return productId;
 		}
 
-		public void setProduct_id(int product_id) {
-			this.product_id = product_id;
+		public void setProductId(int productId) {
+			this.productId = productId;
 		}
 
-		public String getProduct_name() {
-			return product_name;
+		public String getProductName() {
+			return productName;
 		}
 
-		public void setProduct_name(String product_name) {
-			this.product_name = product_name;
+		public void setProductName(String productName) {
+			this.productName = productName;
 		}
 
 		public double getPrice() {
@@ -63,5 +61,16 @@ public class Product
 		public void setPrice(double price) {
 			this.price = price;
 		}
+
+		//toString() to return a String in JSON object format
+		@Override
+		public String toString() {
+			return "{\n" 
+						+ "     " + "\"productId\": " + productId + ",\n" 
+						+ "     " + "\"productName\": \"" + productName + "\",\n"
+						+ "     " + "\"price\": " + price 
+					+ "\n}";
+		}
+
 				
 }

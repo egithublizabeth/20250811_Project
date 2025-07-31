@@ -4,9 +4,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.InventoryManagementAPI.dtos.ProductDTO;
 import com.skillstorm.InventoryManagementAPI.models.Product;
 import com.skillstorm.InventoryManagementAPI.services.ProductService;
 
@@ -41,10 +45,30 @@ public class ProductController
 	}
 	
 	//delete by Product ID
+//	@DeleteMapping("/{productId}")
+//	public ResponseEntity<Void> deleteByIdProduct(@PathVariable("productId") int id)
+//	{
+//		return this.service.deletByIdProduct(id);
+//	}
+	
 	@DeleteMapping("/{productId}")
-	public ResponseEntity<Void> deleteByIdProduct(@PathVariable("productId") int id)
+	public ResponseEntity<String> deleteByIdProduct(@PathVariable("productId") int id)
 	{
 		return this.service.deletByIdProduct(id);
+	}
+	
+	//create one Product
+	@PostMapping
+	public ResponseEntity<String> createOneProduct(@RequestBody ProductDTO dto)
+	{
+		return this.service.createOneProduct(dto);
+	}
+	
+	//update one Product
+	@PutMapping("/{id}")
+	public ResponseEntity<String> updateOne(@PathVariable int id, @RequestBody ProductDTO dto) 
+	{
+		return this.service.updateOneProduct(id, dto);
 	}
 	
 }

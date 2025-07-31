@@ -106,11 +106,6 @@ public class WarehouseInventory
 		this.product_max_qty = product_max_qty;
 	}
 	
-	
-	
-	
-
-	
     
 	
 }
