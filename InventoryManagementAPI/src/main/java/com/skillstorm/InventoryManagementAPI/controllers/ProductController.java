@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.InventoryManagementAPI.dtos.ProductDTO;
+import com.skillstorm.InventoryManagementAPI.models.Message;
 import com.skillstorm.InventoryManagementAPI.models.Product;
 import com.skillstorm.InventoryManagementAPI.services.ProductService;
 
@@ -44,31 +45,26 @@ public class ProductController
 		return this.service.findByIDProduct(id);
 	}
 	
-	//delete by Product ID
-//	@DeleteMapping("/{productId}")
-//	public ResponseEntity<Void> deleteByIdProduct(@PathVariable("productId") int id)
-//	{
-//		return this.service.deletByIdProduct(id);
-//	}
-	
-	@DeleteMapping("/{productId}")
-	public ResponseEntity<String> deleteByIdProduct(@PathVariable("productId") int id)
-	{
-		return this.service.deletByIdProduct(id);
-	}
-	
 	//create one Product
 	@PostMapping
-	public ResponseEntity<String> createOneProduct(@RequestBody ProductDTO dto)
+	public ResponseEntity<Message> createOneProduct(@RequestBody ProductDTO dto)
 	{
 		return this.service.createOneProduct(dto);
 	}
 	
 	//update one Product
 	@PutMapping("/{id}")
-	public ResponseEntity<String> updateOne(@PathVariable int id, @RequestBody ProductDTO dto) 
+	public ResponseEntity<Message> updateOne(@PathVariable int id, @RequestBody ProductDTO dto) 
 	{
 		return this.service.updateOneProduct(id, dto);
 	}
+	
+	//delete by Product ID	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Message> deleteByIdProduct(int id)
+	{
+		return this.service.deletByIdProduct(id);
+	}
+	
 	
 }
