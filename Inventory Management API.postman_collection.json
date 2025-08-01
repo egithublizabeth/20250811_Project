@@ -297,6 +297,192 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Warehouse",
+			"item": [
+				{
+					"name": "Find All Warehouses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses_info",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses_info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Warehouse By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses_info/119",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses_info",
+								"119"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "State",
+			"item": [
+				{
+					"name": "Find All States",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/states",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find State By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/states/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "Find All Cities",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/cities",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find City By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/cities/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
