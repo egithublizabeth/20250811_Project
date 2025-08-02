@@ -6,7 +6,7 @@
 
 # SELECT * FROM `gobi`.`city`;
 
-# SELECT * FROM `gobi`.`warehouse`;
+SELECT * FROM `gobi`.`warehouse`; 
 
 # select * from `gobi`.`warehouse_order`;
 
@@ -105,3 +105,5 @@ select count(*) from `gobi`.`product`;
 select * 
 from `gobi`.`warehouse_inventory`
 where warehouse_id = 119 and product_id = 322;
+
+SELECT * FROM `gobi`.`warehouse_inventory` where warehouse_id = 398;

@@ -92,7 +92,7 @@ CREATE TABLE `gobi`.`order_products` (
   CONSTRAINT `product_id1`
     FOREIGN KEY (`product_id`)
     REFERENCES `gobi`.`product` (`product_id`)
-    ON DELETE CASCADE
+    ON DELETE NO ACTION 
     ON UPDATE CASCADE);
 
 # create warehouse_inventory table: for every warehouse, store it's inventory
@@ -114,10 +114,9 @@ CREATE TABLE `gobi`.`warehouse_inventory`
   CONSTRAINT `product_id2`
 	  FOREIGN KEY (`product_id`)
 	  REFERENCES `gobi`.`product` (`product_id`)
-	  ON DELETE CASCADE
+	  ON DELETE RESTRICT 
 	  ON UPDATE CASCADE
 );
-
 
 
 
