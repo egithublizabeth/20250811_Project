@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.skillstorm.InventoryManagementAPI.dtos.WarehouseInventoryDTO;
+import com.skillstorm.InventoryManagementAPI.idClasses.WarehouseInventoryId;
 import com.skillstorm.InventoryManagementAPI.models.WarehouseInventory;
 import com.skillstorm.InventoryManagementAPI.repositories.WarehouseInventoryRepository;
 
@@ -32,15 +34,26 @@ public class WarehouseInventoryService
 	}
 	
 	//find a Warehouse Inventory by ID with Error Response
-	public ResponseEntity<WarehouseInventory> findByIDWarehouseInventory(int id)
-	{
-		Optional<WarehouseInventory> warehouseInventories = this.repo.findById(id);
+	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseId(int warehouseId)
+	{		
+		Iterable<WarehouseInventory> warehouseInventories = this.repo.findByWarehouseId(warehouseId);
 		
-		if (warehouseInventories.isPresent())
-			return ResponseEntity.ok(warehouseInventories.get());
-		return ResponseEntity.notFound().build();
+		if (!warehouseInventories.iterator().hasNext())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		
+		return ResponseEntity.ok(warehouseInventories);
 	}
 	
-	
+	//find a all the Warehouses that carry/hold a specific Product by ID with Error Response
+	public ResponseEntity<Iterable<WarehouseInventory>> findByProductId(int productId)
+	{		
+		Iterable<WarehouseInventory> warehouses = this.repo.findByProductId(productId);
+		
+		if (!warehouses.iterator().hasNext())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		
+		return ResponseEntity.ok(warehouses);
+	}
+		
+		
 }

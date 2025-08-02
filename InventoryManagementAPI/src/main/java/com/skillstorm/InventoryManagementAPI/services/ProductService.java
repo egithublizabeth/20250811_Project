@@ -51,9 +51,6 @@ public class ProductService
 	//create one Product
 	public ResponseEntity<Message> createOneProduct(ProductDTO dto)
 	{
-		//variable to hold information for the response body of the Http Response 
-		String responseBody;
-		
 		//If ID DNE, create a new record, else return Error Response, we do not want to overwrite existing records
 		if (!this.repo.existsById(dto.productId()))
 		{
@@ -63,20 +60,15 @@ public class ProductService
 			//create/add the product record from the product object
 			this.repo.save(product);
 			
-			responseBody = "Huzzah! Record has been created and added to the Product Table.";
-			
 			//create a message object with responseBody that has a Product object
-			message = new Message(responseBody, product);
+			message = new Message("validCreate", product);
 			
 			return ResponseEntity.status(HttpStatus.CREATED)
 								 .body(message);
 		}
 		
-		//response information if the record exists already
-		responseBody = "Bleh! This record exists already. You can not create a new record with the given parameters, try again.";
-		
-		//create a message object with a responseBody that has no Product Object
-		message = new Message(responseBody);
+		//the record exists already - create a message object with a responseBody that has no Product Object
+		message = new Message("invalidCreate");
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 							 .body(message); 
@@ -85,9 +77,6 @@ public class ProductService
 	//update one Product
 	public ResponseEntity<Message> updateOneProduct(int id, ProductDTO dto) 
 	{
-		//variable to hold information for the response body of the Http Response 
-		String responseBody;
-				
 		//if ID exists, update the record else return 404 Error Response
 		if (this.repo.existsById(id))
 		{
@@ -95,20 +84,15 @@ public class ProductService
 			
 			//update the record
 			this.repo.save(product);
-			
-			responseBody = "Whoopee! Record has been updated in the Product Table.";
-			
+						
 			//create a message object with responseBody that has a Product object
-			message = new Message(responseBody, product);
+			message = new Message("validUpdate", product);
 			
 			return ResponseEntity.ok().body(message);
 		}
 		
-		//id does not exist so you can not update it	
-		responseBody = "Bummer! This record does not exist(DNE). You can not update a record that DNE, try again.";
-
-		//create a message object with a responseBody that has no Product Object
-		message = new Message(responseBody);
+		//id does not exist so you can not update it - create a message object with a responseBody that has no Product Object
+		message = new Message("invalidUpdate");
 				
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 							 .body(message);
@@ -117,9 +101,6 @@ public class ProductService
 	//delete one Product
 	public ResponseEntity<Message> deletByIdProduct(int id)
 	{
-		//variable to hold information for the response body of the Http Response 
-		String responseBody;
-
 		//if id exists then delete the record, else record DNE
 		if (this.repo.existsById(id))
 		{	//find the record to delete to show the user which record was deleted
@@ -128,10 +109,8 @@ public class ProductService
 			//convert the Optional type to Product type
 			Product product1 = product.get();
 
-			responseBody = "Cheers! The record was deleted.";
-			
 			//create a message object with responseBody that has a Product object
-			message = new Message(responseBody, product1);
+			message = new Message("validDelete", product1);
 			
 			//delete the record by id
 			this.repo.deleteById(id);
@@ -140,20 +119,13 @@ public class ProductService
 			return ResponseEntity.status(HttpStatus.OK).body(message);  
 		}
 		
-		//record DNE
-		responseBody = 	"Yikes! The record does not exist(DNE), try again.";
-		
-		//create a message object with a responseBody that has no Product Object
-		message = new Message(responseBody);
-		
-		//delete the record by id
-		this.repo.deleteById(id);
-		
+		//record DNE - create a message object with a responseBody that has no Product Object
+		message = new Message("invalidDelete");
+
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				 			 .body(message);
-		
-		//ensures that a no_content can not have a body response
-		//return ResponseEntity.status(HttpStatus.NO_CONTENT).body(message); 
+	
+		//return ResponseEntity.status(HttpStatus.NO_CONTENT).body(message); //a no_content can not have a body response
 	}
 	
 }

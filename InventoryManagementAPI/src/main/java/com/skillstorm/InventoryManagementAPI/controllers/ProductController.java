@@ -61,7 +61,7 @@ public class ProductController
 	
 	//delete by Product ID	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Message> deleteByIdProduct(int id)
+	public ResponseEntity<Message> deleteByIdProduct(@PathVariable int id)
 	{
 		return this.service.deletByIdProduct(id);
 	}
