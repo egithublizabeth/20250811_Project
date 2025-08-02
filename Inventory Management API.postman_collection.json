@@ -51,14 +51,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/products/322",
+							"raw": "localhost:8080/products/1000",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"products",
-								"322"
+								"1000"
 							]
 						}
 					},
@@ -193,16 +193,55 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"labelName\": \"<insert value here>\"\r\n}"
+							"raw": "{\r\n    \"warehouseId\": 563,\r\n    \"productId\": 436\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "localhost:8080/label-histories/0",
+							"raw": "localhost:8080/warehouses/0",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"label-histories",
+								"warehouses",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Warehouses By Product ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"warehouseId\": 563,\r\n    \"productId\": 436\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses",
 								"0"
 							]
 						}
