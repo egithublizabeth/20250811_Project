@@ -1,7 +1,13 @@
 package com.skillstorm.InventoryManagementAPI.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -37,6 +43,34 @@ public class ProductService
 		return ResponseEntity.ok(products);
 	}
 	
+	//find limit products with error response
+	//public ResponseEntity<Iterable<Product>> findAllProductLimit(int limitValue)
+	public ResponseEntity<Object> findAllProductLimit(int limitValue)
+	{
+		//if the limitValue is greater than the table count then DO NOT GET any records
+		if (limitValue >= this.repo.count()) 
+		{
+			//create an object to store info
+			Map<String, Integer> infoObject = new HashMap<>();
+			infoObject.put("Total Record Count", (int) this.repo.count());
+			
+			//create new message object for response body
+			message = new Message("invalidLimitOver", infoObject);
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+		}
+
+		// create pagable object so we can return 'x' number of products
+		Pageable pageable = PageRequest.of(0, limitValue); 
+		List<Product> products = this.repo.findAll(pageable);
+
+		if (!products.iterator().hasNext())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+		return ResponseEntity.ok(products);
+		
+	}
+	
 	//find a Product by ID with Error Response
 	public ResponseEntity<Product> findByIDProduct(int id)
 	{
@@ -54,8 +88,11 @@ public class ProductService
 		//If ID DNE, create a new record, else return Error Response, we do not want to overwrite existing records
 		if (!this.repo.existsById(dto.productId()))
 		{
+			//Clean up the product name
+			String productName = cleanProductName(dto.productName());
+			
 			//create the product object
-			Product product = new Product(dto.productId(), dto.productName(), dto.price());
+			Product product = new Product(dto.productId(), productName, dto.price());
 			
 			//create/add the product record from the product object
 			this.repo.save(product);
@@ -80,7 +117,11 @@ public class ProductService
 		//if ID exists, update the record else return 404 Error Response
 		if (this.repo.existsById(id))
 		{
-			Product product = new Product(id, dto.productName(), dto.price());
+			//clean up the product name
+			String productName = cleanProductName(dto.productName());
+			
+			//create the new product object
+			Product product = new Product(id, productName, dto.price());
 			
 			//update the record
 			this.repo.save(product);
@@ -127,5 +168,49 @@ public class ProductService
 	
 		//return ResponseEntity.status(HttpStatus.NO_CONTENT).body(message); //a no_content can not have a body response
 	}
+	
+	/* Method 1 of 1
+	* input: String product name
+	* output: String product Name 
+	* objective: Trim, upper case, and delete multiple white spaces in a product name
+    */
+	public static String cleanProductName(String productName)
+	{  
+		
+	    //instantiate variables
+		int i;
+		String[] productNameArray = null;
+        ArrayList<String> nameArray = new ArrayList<>();
+        String nameString = null;
+
+		//trim white spaces and lower case, split all names by white spaces (white space is in between names)
+		productNameArray = productName.trim().toLowerCase().split(" ");
+   	
+	   
+	//for loop, if there is a blank space in the array, toss it, if not store the name in an ArrayList
+       for (i=0; i < productNameArray.length; i++)
+       {
+       	if (productNameArray[i].isBlank()) //if the string is blank/white spaces
+       		 continue; //do not include it, skip code and move to next iteration
+       	else
+       	{
+       		//capitalize the first letter and add it to the ArrayList
+       		String nameFixed = productNameArray[i].substring(0,1).toUpperCase() + productNameArray[i].substring(1);
+       		nameArray.add(nameFixed);
+       	}
+       }
+       
+       //concatenate the name and assign it to nameString
+       for (i=0; i < nameArray.size(); i++)
+       {
+       	if (i==0)
+       		nameString = nameArray.get(i);
+       	else
+       		nameString = nameString + " " + nameArray.get(i);
+       }
+       
+       return nameString;
+	}
+
 	
 }

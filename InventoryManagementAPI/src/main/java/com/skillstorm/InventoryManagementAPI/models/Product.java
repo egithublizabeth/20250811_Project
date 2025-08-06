@@ -4,6 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+
 
 /*
  * this class is an entity -- it maps to a table in our database -- one record in that table = one object of this class
@@ -16,12 +21,16 @@ public class Product
 		//table fields/columns/properties
 		@Id                            //primary key
 		@Column
+		@Positive(message = "Product Id > 0")
 		private int productId;        //primary key
 		
 		@Column
+		@NotBlank(message = "Product name can't be empty")
+		@Size(min = 1, max = 100, message = "Minimum string length is 1 and maximum length is 100")
 		private String productName;
 		
 		@Column
+		@PositiveOrZero(message = "Price >= $0")
 		private double price;
 		
 		//constructors
@@ -61,16 +70,5 @@ public class Product
 		public void setPrice(double price) {
 			this.price = price;
 		}
-
-		//toString() to return a String in JSON object format
-		@Override
-		public String toString() {
-			return "{\n" 
-						+ "     " + "\"productId\": " + productId + ",\n" 
-						+ "     " + "\"productName\": \"" + productName + "\",\n"
-						+ "     " + "\"price\": " + price 
-					+ "\n}";
-		}
-
 				
 }

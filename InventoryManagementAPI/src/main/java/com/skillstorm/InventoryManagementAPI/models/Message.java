@@ -1,5 +1,8 @@
 package com.skillstorm.InventoryManagementAPI.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //this class will be use to return meaningful messages with Http Responses
 public class Message 
 {
@@ -8,7 +11,10 @@ public class Message
 	
 	//a message object has a product so it can return the product in the message
 	private Product product;
-
+	
+	//a message object has a random object to store information
+	private Map<String, Integer> info = new HashMap<>();
+	
 	//constructor with no arguments
 	public Message() {
 		super();
@@ -27,6 +33,14 @@ public class Message
 	{
 		super();
 		setmessage(message);
+	}
+	
+	//constructor with message argument and an object
+	public Message(String message, Map<String, Integer> info) 
+	{
+		super();
+		setmessage(message);
+		this.info = info;
 	}
 	
 	
@@ -63,6 +77,10 @@ public class Message
 				
 			case "invalidDelete":
 				this.message = "Yikes! The record does not exist(DNE), try again.";
+				break;
+				
+			case "invalidLimitOver":
+				this.message = "Dang! The limit you provided is greater than the number of records. Try again. If you want to see all products, use GET/products API endpoint.";
 		}
 		
 	}
@@ -76,5 +94,15 @@ public class Message
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	public Map<String, Integer> getInfo() {
+		return info;
+	}
+
+	public void setInfo(Map<String, Integer> info) {
+		this.info = info;
+	}
+	
+	
 
 }

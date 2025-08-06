@@ -1,5 +1,8 @@
 package com.skillstorm.InventoryManagementAPI.repositories;
 
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +14,7 @@ import com.skillstorm.InventoryManagementAPI.models.Product;
 public interface ProductRepository extends CrudRepository< Product, Integer >  //<import model class name, data type>
 {
 
+	//this method is used for the findAllProductLimit() in the service file
+	List<Product> findAll(Pageable pageable);
+	
 }
