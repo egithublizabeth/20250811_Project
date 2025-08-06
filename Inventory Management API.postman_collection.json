@@ -31,6 +31,29 @@
 					"response": []
 				},
 				{
+					"name": "Find All Products Limit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/limit/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"limit",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Find Product By ID",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -74,7 +97,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"productId\": 1003,\r\n        \"productName\": \"Metallic Mug\",\r\n        \"price\": 8.99\r\n}",
+							"raw": "{\r\n        \"productId\": -5,\r\n        \"productName\": \" \",\r\n        \"price\": -8.99\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
