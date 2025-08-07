@@ -2,6 +2,7 @@
 
 <!-- Begining of Required Endpoints -->
 ### **Required Endpoints**  
+7 Endpoints
   + <details>
       <summary>GET/warehouses</summary>
       &emsp;Objective: See every warehouses' inventory<br>
@@ -68,10 +69,12 @@
     &emsp;Table(s): product
   </details>
 <!-- End of Required Endpoints -->
------------------------------------------------------------------------------------------------- 
+
+<hr>
 
 <!-- Begining of Extra Endpoints -->
 ### **Extra Endpoints**
+18 Endpoints
   + <details>
       <summary>GET/products/limit/{value}</summary>
       &emsp;Objective: See a limited number of product record(s) <br>
@@ -188,5 +191,58 @@
     &emsp;Output(s): Returns all records from an product id <br>
     &emsp;Table(s): order_products
   </details>
+  
+  + <details>
+    <summary>GET/warehouses-info</summary>
+    &emsp;Objective: See all warehouse information records from warehouse table<br>
+    &emsp;Input(s): n/a <br>
+    &emsp;Output(s): Returns all records from warehouse table <br>
+    &emsp;Table(s): warehouse
+  </details>
+
+  + <details>
+    <summary>GET/warehouses-info/{id}</summary>
+    &emsp;Objective: See a record for a particular warehouse<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;Output(s): Returns a record related to a warehouse id <br>
+    &emsp;Table(s): warehouse
+  </details>
+
+  + <details>
+    <summary>GET/states</summary>
+    &emsp;Objective: See all records from state table<br>
+    &emsp;Input(s): n/a <br>
+    &emsp;Output(s): Returns all records from state table <br>
+    &emsp;Table(s): state
+  </details>
+
+  + <details>
+    <summary>GET/states/{id}</summary>
+    &emsp;Objective: See a record for a particular state<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;state id -> url parameter <br>
+    &emsp;Output(s): Returns a record related to a state id <br>
+    &emsp;Table(s): state
+  </details>
+
+  + <details>
+    <summary>GET/city</summary>
+    &emsp;Objective: See all records from city table<br>
+    &emsp;Input(s): n/a <br>
+    &emsp;Output(s): Returns all records from city table <br>
+    &emsp;Table(s): city
+  </details>
+
+  + <details>
+    <summary>GET/city/{id}</summary>
+    &emsp;Objective: See a record for a particular city<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;city id -> url parameter <br>
+    &emsp;Output(s): Returns a record related to a city id <br>
+    &emsp;Table(s): city
+  </details>
 <!-- End of Extra Endpoints -->
+
+<hr>
 
