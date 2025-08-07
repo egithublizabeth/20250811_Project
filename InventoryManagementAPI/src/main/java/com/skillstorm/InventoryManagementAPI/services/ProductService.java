@@ -43,8 +43,7 @@ public class ProductService
 		return ResponseEntity.ok(products);
 	}
 	
-	//find limit products with error response
-	//public ResponseEntity<Iterable<Product>> findAllProductLimit(int limitValue)
+	//find product with a limit of return records with error response
 	public ResponseEntity<Object> findAllProductLimit(int limitValue)
 	{
 		//if the limitValue is greater than the table count then DO NOT GET any records
@@ -60,7 +59,7 @@ public class ProductService
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
 		}
 
-		// create pagable object so we can return 'x' number of products
+		// create Pageable object so we can return 'x' number of products
 		Pageable pageable = PageRequest.of(0, limitValue); 
 		List<Product> products = this.repo.findAll(pageable);
 
@@ -92,7 +91,7 @@ public class ProductService
 			String productName = cleanProductName(dto.productName());
 			
 			//create the product object
-			Product product = new Product(dto.productId(), productName, dto.price());
+			Product product = new Product(dto.productId(), productName, dto.price(), null);
 			
 			//create/add the product record from the product object
 			this.repo.save(product);
@@ -121,7 +120,7 @@ public class ProductService
 			String productName = cleanProductName(dto.productName());
 			
 			//create the new product object
-			Product product = new Product(id, productName, dto.price());
+			Product product = new Product(id, productName, dto.price(), null);
 			
 			//update the record
 			this.repo.save(product);
