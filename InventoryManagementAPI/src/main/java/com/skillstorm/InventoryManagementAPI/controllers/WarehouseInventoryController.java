@@ -2,6 +2,7 @@ package com.skillstorm.InventoryManagementAPI.controllers;
 
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -51,28 +52,28 @@ public class WarehouseInventoryController
 	
 	//find the most expensive products in a warehouse
 	@GetMapping("/{warehouseId}/max-product-price-desc/{limitValue}")
-	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMaxProductPrice(@PathVariable int warehouseId, @PathVariable @Positive(message = "limitValue > 0")int limitValue)
+	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMaxProductPrice(@PathVariable int warehouseId, @Validated @PathVariable @Positive(message = "limitValue > 0")int limitValue)
 	{
 		return this.service.findByWarehouseMaxProductPrice(warehouseId, limitValue);
 	}
 	
 	//find the cheapest products in a warehouse
 	@GetMapping("/{warehouseId}/min-product-price-asc/{limitValue}")
-	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMinProductPrice(@PathVariable int warehouseId, @PathVariable @Positive(message = "limitValue > 0")int limitValue)
+	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMinProductPrice(@PathVariable int warehouseId, @Validated @PathVariable @Positive(message = "limitValue > 0")int limitValue)
 	{
 		return this.service.findByWarehouseMinProductPrice(warehouseId, limitValue);
 	}
 	
 	//find the products that are BELOW the MINIMUM threshold or with in range
 	@GetMapping("/{warehouseId}/product-below-threshold/{threshold}")
-	public ResponseEntity<Iterable<WarehouseInventory>> findProductBelowByWarehouse(@PathVariable int warehouseId, @PathVariable @PositiveOrZero(message = "threshold >= 0") int threshold)
+	public ResponseEntity<Iterable<WarehouseInventory>> findProductBelowByWarehouse(@PathVariable int warehouseId, @Validated @PathVariable @PositiveOrZero(message = "threshold >= 0") int threshold)
 	{
 		return this.service.findProductBelowByWarehouse(warehouseId, threshold);
 	}
 	
 	//find the products that are ABOVE the MAXIMUM threshold or with in range
 	@GetMapping("/{warehouseId}/product-above-threshold/{threshold}")
-	public ResponseEntity<Iterable<WarehouseInventory>> findProductAboveByWarehouse(@PathVariable int warehouseId, @PathVariable @PositiveOrZero(message = "threshold >= 0") int threshold)
+	public ResponseEntity<Iterable<WarehouseInventory>> findProductAboveByWarehouse(@PathVariable int warehouseId, @Validated @PathVariable @PositiveOrZero(message = "threshold >= 0") int threshold)
 	{
 		return this.service.findProductAboveByWarehouse(warehouseId, threshold);
 	}

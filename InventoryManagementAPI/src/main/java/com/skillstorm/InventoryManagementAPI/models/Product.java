@@ -3,7 +3,6 @@ package com.skillstorm.InventoryManagementAPI.models;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.skillstorm.InventoryManagementAPI.idClasses.WarehouseInventoryId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,7 +47,6 @@ public class Product
 		public Product() 
 		{
 			super();
-			// TODO Auto-generated constructor stub
 		}
 
 		public Product(@Positive(message = "Product Id > 0") int productId,
