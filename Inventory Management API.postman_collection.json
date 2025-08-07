@@ -258,14 +258,159 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/warehouses/0",
+							"raw": "localhost:8080/warehouses/product/436",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"warehouses",
-								"0"
+								"product",
+								"436"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Warehouse Inventory Max Product Price",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"warehouseId\": 563,\r\n    \"productId\": 436\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses/119/max-product-price-desc/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses",
+								"119",
+								"max-product-price-desc",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Warehouse Inventory Min Product Price",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"warehouseId\": 563,\r\n    \"productId\": 436\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses/119/min-product-price-asc/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses",
+								"119",
+								"min-product-price-asc",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Product Below Threshold By Warehouse",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"warehouseId\": 563,\r\n    \"productId\": 436\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses/119/product-below-threshold/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses",
+								"119",
+								"product-below-threshold",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Product Above Threshold By Warehouse",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"warehouseId\": 563,\r\n    \"productId\": 436\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/warehouses/119/product-above-threshold/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses",
+								"119",
+								"product-above-threshold",
+								"5"
 							]
 						}
 					},
