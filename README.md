@@ -1,10 +1,7 @@
-# 20250811_Project
-Inventory Management API Project
+# Inventory Management API Project
 
 <!-- Begining of Required Endpoints -->
-<details>
-<summary>Required Endpoints</summary>
-  
+### **Required Endpoints**  
   + <details>
       <summary>GET/warehouses</summary>
       &emsp;Objective: See every warehouses' inventory<br>
@@ -12,7 +9,7 @@ Inventory Management API Project
       &emsp;Output(s): Returns all warehouses' inventory <br>
       &emsp;Table(s): warehouse_inventory
     </details>
-  
+
   + <details>
     <summary>GET/warehouses/{id}</summary>
     &emsp;Objective: See every a warehouse's inventory<br>
@@ -70,29 +67,126 @@ Inventory Management API Project
     &emsp;Output(s): n/a <br>
     &emsp;Table(s): product
   </details>
-
-</details>
 <!-- End of Required Endpoints -->
+------------------------------------------------------------------------------------------------ 
 
-<details>
-<summary>Extra Endpoints</summary>
-<br>
-This is how you dropdown.
-</details>
+<!-- Begining of Extra Endpoints -->
+### **Extra Endpoints**
+  + <details>
+      <summary>GET/products/limit/{value}</summary>
+      &emsp;Objective: See a limited number of product record(s) <br>
+      &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp; integer value -> url parameter <br>
+      &emsp;Output(s): Returns "value" number of product record(s) <br>
+      &emsp;Table(s): product
+    </details>
 
-<details>
-<summary>Well</summary>
+  + <details>
+    <summary>GET/warehouses/{id}/product/{id}</summary>
+    &emsp;Objective: See a warehouse_inventory based on warehouse id and product id<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;product id -> url parameter <br>
+    &emsp;Output(s): Returns a record from warehouse_inventory table<br>
+    &emsp;Table(s): warehouse_inventory
+  </details>
+  
+  + <details>
+    <summary>GET/warehouses/{id}/product-below-threshold/{value}</summary>
+    &emsp;Objective: See all records for a given warehouse where product quantity is lower than the minimum threshold or <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;falls within the value range (positive & negative) from the minimum threshold<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;integer value -> url parameter <br>
+    &emsp;Output(s): Returns all products for a warehouse where product quantity is less than minimum threshold and <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;within minimum range (value +- minimum number)<br>
+    &emsp;Table(s): warehouse_inventory
+  </details>
+  
+  + <details>
+    <summary>GET/warehouses/{id}/product-above-threshold/{value}</summary>
+    &emsp;Objective: See all records for a given warehouse where product quantity is greater than the maximum threshold or <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;falls within the value range (positive & negative) from the maximum threshold<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;integer value -> url parameter <br>
+    &emsp;Output(s): Returns all products for a warehouse where product quantity is greater than maximum threshold and <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;within minimum range (value +- maximum number)<br>
+    &emsp;Table(s): warehouse_inventory
+  </details>
+  
+  + <details>
+    <summary>GET/warehouses/{id}/max-product-price-desc/{value}</summary>
+    &emsp;Objective: See the top "value"(number i.e 5) most expensive products within a warehouse <br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;integer value -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;price -> response body <br>
+    &emsp;Output(s): Returns the highest priced "value"(number i.e 5) items from a warehouse <br>
+    &emsp;Table(s): warehouse_inventory
+  </details>
+  
+  + <details>
+    <summary>GET/warehouses/{id}/min-product-price-asc/{value}</summary>
+    &emsp;Objective: See the top "value"(number i.e 5) cheapest products within a warehouse <br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;integer value -> url parameter <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;price -> response body <br>
+    &emsp;Output(s): Returns the lowest priced "value"(number i.e 5) items from a warehouse <br>
+    &emsp;Table(s): warehouse_inventory
+  </details>
+  
+  + <details>
+    <summary>GET/warehouses-orders</summary>
+    &emsp;Objective: See all records from warehouse_order table<br>
+    &emsp;Input(s): n/a <br>
+    &emsp;Output(s): Returns all records from warehouse_order table  <br>
+    &emsp;Table(s): warehouse_order
+  </details>
 
-<details>
-<summary>Try this</summary>
+  + <details>
+    <summary>GET/warehouses-orders/order-id/{id}</summary>
+    &emsp;Objective: See the record associated to an order id<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;order id -> url parameter <br>
+    &emsp;Output(s): Returns a record with the given order id  <br>
+    &emsp;Table(s): warehouse_order
+  </details>
 
- <details>
- <summary>The other one</summary>
+  + <details>
+    <summary>GET/warehouses-orders/warehouse-id/{id}</summary>
+    &emsp;Objective: See all order records associated to a warehouse id<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;warehouse id -> url parameter <br>
+    &emsp;Output(s): Returns all records associated to a warehouse id <br>
+    &emsp;Table(s): warehouse_order
+  </details>
 
-   <details>
-   <summary>Ok, try this</summary>
-   You got me 😂
-   </details>
- </details>
-</details>
-</details>
+  + <details>
+    <summary>GET/order-products</summary>
+    &emsp;Objective: See all records from order_products table<br>
+    &emsp;Input(s): n/a <br>
+    &emsp;Output(s): Returns all records from order_products table <br>
+    &emsp;Table(s): order_products
+  </details>
+
+  + <details>
+    <summary>GET/order-products/order-id/{id}</summary>
+    &emsp;Objective: See all records associated with a given order id<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;order id -> url parameter <br>
+    &emsp;Output(s): Returns all records from an order id <br>
+    &emsp;Table(s): order_products
+  </details>
+
+  + <details>
+    <summary>GET/order-products/product-id/{id}</summary>
+    &emsp;Objective: See all records associated with a given product id<br>
+    &emsp;Input(s): parameter -> location <br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;product id -> url parameter <br>
+    &emsp;Output(s): Returns all records from an product id <br>
+    &emsp;Table(s): order_products
+  </details>
+<!-- End of Extra Endpoints -->
+
