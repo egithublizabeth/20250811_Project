@@ -34,9 +34,9 @@ Non-Functional Requirements:
 - Inventory Management API.postman_collection.json
    - JSON file of REST API Endpoints in Postman
 - schema.sql
-   - mysql file of gobi schema (includes tables)
+   - mysql file for gobi database and table creation
 - data.sql
-   - mysql file of data insertion into each table in the gobi schema
+   - mysql file of data insertion into each table in the gobi database
 - test_queries.sql
    - mysql file for mysql queries sanity checks
 - README.md
