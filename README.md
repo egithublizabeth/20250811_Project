@@ -23,6 +23,24 @@ Non-Functional Requirements:
 - Code upholds industry best practices (SOLID/DRY)
 - Database is normalized
 
+-------------------------------------
+
+### **Contents in Github Repository**  
+
+- InventoryManagementAPI
+   - Folder containing all Java Spring Boot files
+- ERR_Diagram_20250725.png
+   - Image of Entitiy Relationship Diagram
+- Inventory Management API.postman_collection.json
+   - JSON file of REST API Endpoints in Postman
+- schema.sql
+   - mysql file of gobi schema (includes tables)
+- data.sql
+   - mysql file of data insertion into each table in the gobi schema
+- test_queries.sql
+   - mysql file for mysql queries sanity checks
+- README.md
+
 ------------------------------------
 
 ### **Gobi Company**  
