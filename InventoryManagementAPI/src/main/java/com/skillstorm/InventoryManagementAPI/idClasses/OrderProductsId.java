@@ -68,7 +68,4 @@ public class OrderProductsId implements Serializable
 		return orderId == other.orderId && productId == other.productId && qty == other.qty;
 	}
 	
-	
-	
-	
 }

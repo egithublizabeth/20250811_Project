@@ -21,7 +21,7 @@ public class WarehouseOrderService
 		this.repo = repo;
 	}
 	
-	//find all Warehouse Orders with error response
+	//find all Warehouse Orders with Error Response (Method 1 of 3)
 	public ResponseEntity<Iterable<WarehouseOrder>> findAllWarehouseOrder()
 	{
 		Iterable<WarehouseOrder> warehouseOrders = this.repo.findAll();
@@ -31,7 +31,7 @@ public class WarehouseOrderService
 		return ResponseEntity.ok(warehouseOrders);
 	}
 	
-	//find a Warehouse Order by Order ID with Error Response
+	//find a Warehouse Order by Order ID with Error Response (Method 2 of 3)
 	public ResponseEntity<WarehouseOrder> findByIdWarehouseOrder(int id)
 	{
 		Optional<WarehouseOrder> warehouseOrders = this.repo.findById(id);
@@ -39,10 +39,9 @@ public class WarehouseOrderService
 		if (warehouseOrders.isPresent())
 			return ResponseEntity.ok(warehouseOrders.get());
 		return ResponseEntity.notFound().build();
-		
 	}
 	
-	//find all Warehouse Orders by Warehouse Id with error response
+	//find all Warehouse Orders by Warehouse ID with Error Response (Method 3 of 3)
 	public ResponseEntity<Iterable<WarehouseOrder>> findByWarehouseId(int warehouseId)
 	{
 		Iterable<WarehouseOrder> warehouseOrders = this.repo.findByWarehouseId(warehouseId);
@@ -51,4 +50,5 @@ public class WarehouseOrderService
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		return ResponseEntity.ok(warehouseOrders);
 	}
+	
 }

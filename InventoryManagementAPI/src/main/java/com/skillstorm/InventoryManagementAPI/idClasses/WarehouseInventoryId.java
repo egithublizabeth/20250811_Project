@@ -23,7 +23,6 @@ public class WarehouseInventoryId implements Serializable
 	// constructors
 	public WarehouseInventoryId() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -38,7 +37,7 @@ public class WarehouseInventoryId implements Serializable
 		this.productMaxQty = productMaxQty;
 	}
 
-
+	//getters and setters
 	public int getWarehouseId() {
 		return warehouseId;
 	}
@@ -119,6 +118,4 @@ public class WarehouseInventoryId implements Serializable
 				&& productQty == other.productQty && warehouseId == other.warehouseId;
 	}
 
-
-	
 }

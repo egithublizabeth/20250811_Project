@@ -13,19 +13,16 @@ import jakarta.transaction.Transactional;
 @Repository
 public interface OrderProductsRepository extends CrudRepository<OrderProducts, OrderProductsId>
 {
-	
-	//method to see all order products associated to an order id
+	//method to see all 'order products' associated to an order id (Method 1 of 2)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM order_products where order_id = ?1", nativeQuery = true)
 	Iterable<OrderProducts> findByOrderId(int orderId);
 
-	
-	//method to see all order products associated to a product id
+	//method to see all 'order products' associated to a product id (Method 2 of 2)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM order_products where product_id = ?1	", nativeQuery = true)
 	Iterable<OrderProducts> findByProductId(int productId);
-
 
 }

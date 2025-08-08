@@ -21,24 +21,25 @@ public class OrderProductsController
 		this.service = service;
 	}
 	
-	//find all Warehouse Orders with Error Response
+	//find all Order Products with Error Response (Method 1 of 3)
 	@GetMapping
 	public ResponseEntity<Iterable<OrderProducts>> findAllOrderProducts()
 	{
 		return this.service.findAllOrderProducts();
 	}
 	
-	//find Warehouse Order by order ID with Error Response
+	//find all Order Products by Order ID with Error Response (Method 2 of 3)
 	@GetMapping("/order-id/{orderId}")
 	public ResponseEntity<Iterable<OrderProducts>> findByOrderId(@PathVariable("orderId") int id)
 	{
 		return this.service.findByOrderId(id);
 	}
 	
-	//find Warehouse Orders by Warehouse ID with Error Response
+	//find all Order Products by Product Id with Error Response (Method 3 of 3)
 	@GetMapping("/product-id/{productId}")
 	public ResponseEntity<Iterable<OrderProducts>> findByProductId(@PathVariable("productId") int id)
 	{
 		return this.service.findByProductId(id);
 	}
+	
 }

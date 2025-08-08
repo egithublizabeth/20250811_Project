@@ -14,7 +14,9 @@ import com.skillstorm.InventoryManagementAPI.models.Product;
 public interface ProductRepository extends CrudRepository< Product, Integer >  //<import model class name, data type>
 {
 
-	//this method is used for the findAllProductLimit() in the service file
+	/* this method is used for the findAllProductLimit() in the service file
+	 * allows for a Pageable object to be an input parameter for findAll() Spring Repository method
+	 */
 	List<Product> findAll(Pageable pageable);
 	
 }

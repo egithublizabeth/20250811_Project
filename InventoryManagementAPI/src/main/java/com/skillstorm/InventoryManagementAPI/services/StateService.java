@@ -23,7 +23,7 @@ public class StateService
 		this.repo = repo;
 	}
 	
-	//find all States with error response
+	//find all States with Error Response (Method 1 of 2)
 	public ResponseEntity<Iterable<State>> findAllState()
 	{
 		Iterable<State> states = this.repo.findAll();
@@ -33,7 +33,7 @@ public class StateService
 		return ResponseEntity.ok(states);
 	}
 	
-	//find a State by ID with Error Response
+	//find a State by ID with Error Response (Method 2 of 2)
 	public ResponseEntity<State> findByIDState(int id)
 	{
 		Optional<State> state = this.repo.findById(id);

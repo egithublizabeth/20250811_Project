@@ -21,14 +21,14 @@ public class StateController
 		this.service = service;
 	}
 	
-	//find all Products with Error Response
+	//find all States with Error Response (Method 1 of 2)
 	@GetMapping
 	public ResponseEntity<Iterable<State>> findAllState()
 	{
 		return this.service.findAllState();
 	}
 	
-	//find by Product ID with Error Response
+	//find a State by ID with Error Response (Method 2 of 2)
 	@GetMapping("/{stateId}")
 	public ResponseEntity<State> findByIDState(@PathVariable("stateId") int id)
 	{

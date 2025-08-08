@@ -24,6 +24,7 @@ public class City
 	@Column 
 	private String cityName;
 	
+	//to see state information associated to a city record
 	@ManyToOne
 	@JoinColumn(name = "state_id", referencedColumnName = "stateId")
 	@JsonIgnoreProperties({"cities", "stateId"})
@@ -67,8 +68,4 @@ public class City
 		this.state = state;
 	}
 	
-	
-	
-	
-
 }

@@ -27,7 +27,7 @@ public class Product
 		@Id                            //primary key
 		@Column
 		@Positive(message = "Product Id > 0")
-		private int productId;        //primary key
+		private int productId;        
 		
 		@Column
 		@NotBlank(message = "Product name can't be empty")
@@ -38,7 +38,7 @@ public class Product
 		@PositiveOrZero(message = "Price >= $0")
 		private double price;
 		
-		//to show a list of cities associated with each state record
+		//to show a list of warehouse inventory record(s) associated with each product id
 		@OneToMany(mappedBy = "product")
 		@JsonIgnoreProperties({"product"})
 		private List<WarehouseInventory> warehouseInventory;
@@ -58,7 +58,8 @@ public class Product
 			this.price = price;
 			this.warehouseInventory = warehouseInventory;
 		}
-
+		
+		//getters & setters
 		public int getProductId() {
 			return productId;
 		}
@@ -90,7 +91,5 @@ public class Product
 		public void setWarehouseInventory(List<WarehouseInventory> warehouseInventory) {
 			this.warehouseInventory = warehouseInventory;
 		}
-
-
 				
 }

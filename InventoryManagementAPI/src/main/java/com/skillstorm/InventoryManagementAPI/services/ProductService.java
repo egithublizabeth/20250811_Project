@@ -17,7 +17,7 @@ import com.skillstorm.InventoryManagementAPI.models.Message;
 import com.skillstorm.InventoryManagementAPI.models.Product;
 import com.skillstorm.InventoryManagementAPI.repositories.ProductRepository;
 
-@Service  //this specifies that this class is a service, typically used for all endpoint logic other than just pointing endpoints to their destinations
+@Service  //this specifies that this class is a service, typically used for all end point logic other than just pointing end points to their destinations
           //this class in an injectable Component/Bean
 public class ProductService 
 {
@@ -30,10 +30,10 @@ public class ProductService
 		this.repo = repo;
 	}
 	
-	//****create an instance of Message object****
+	//create an instance of Message Object
 	private Message message;
 	
-	//find all products with error response
+	//find all products with error response (Method 1 of 7)
 	public ResponseEntity<Iterable<Product>> findAllProduct()
 	{
 		Iterable<Product> products = this.repo.findAll();
@@ -43,7 +43,7 @@ public class ProductService
 		return ResponseEntity.ok(products);
 	}
 	
-	//find product with a limit of return records with error response
+	//find all products with a limit on return records with error response (Method 2 of 7)
 	public ResponseEntity<Object> findAllProductLimit(int limitValue)
 	{
 		//if the limitValue is greater than the table count then DO NOT GET any records
@@ -59,7 +59,7 @@ public class ProductService
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
 		}
 
-		// create Pageable object so we can return 'x' number of products
+		//create Pageable object so we can return 'x' number of products 
 		Pageable pageable = PageRequest.of(0, limitValue); 
 		List<Product> products = this.repo.findAll(pageable);
 
@@ -67,10 +67,9 @@ public class ProductService
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
 		return ResponseEntity.ok(products);
-		
 	}
 	
-	//find a Product by ID with Error Response
+	//find a Product by ID with Error Response (Method 3 of 7)
 	public ResponseEntity<Product> findByIDProduct(int id)
 	{
 		Optional<Product> product = this.repo.findById(id);
@@ -78,22 +77,21 @@ public class ProductService
 		if (product.isPresent())
 			return ResponseEntity.ok(product.get());
 		return ResponseEntity.notFound().build();
-		
 	}
 	
-	//create one Product
+	//create one product record and insert into the product table (Method 4 of 7)
 	public ResponseEntity<Message> createOneProduct(ProductDTO dto)
 	{
-		//If ID DNE, create a new record, else return Error Response, we do not want to overwrite existing records
+		//If ID DNE, create a new record, else return Error Response, we do not want to overwrite an existing record
 		if (!this.repo.existsById(dto.productId()))
 		{
-			//Clean up the product name
+			//clean up the product name
 			String productName = cleanProductName(dto.productName());
 			
 			//create the product object
 			Product product = new Product(dto.productId(), productName, dto.price(), null);
 			
-			//create/add the product record from the product object
+			//insert the new product object to product table
 			this.repo.save(product);
 			
 			//create a message object with responseBody that has a Product object
@@ -110,7 +108,7 @@ public class ProductService
 							 .body(message); 
 	}
 	
-	//update one Product
+	//update an existing product record (Method 5 of 7)
 	public ResponseEntity<Message> updateOneProduct(int id, ProductDTO dto) 
 	{
 		//if ID exists, update the record else return 404 Error Response
@@ -138,7 +136,7 @@ public class ProductService
 							 .body(message);
 	}
 	
-	//delete one Product
+	//delete a product record (Method 6 of 7)
 	public ResponseEntity<Message> deletByIdProduct(int id)
 	{
 		//if id exists then delete the record, else record DNE
@@ -155,7 +153,7 @@ public class ProductService
 			//delete the record by id
 			this.repo.deleteById(id);
 			
-			//not correct response but allows body response information
+			//not correct response but allows the response body to output a message (correct response is 204 No Content)
 			return ResponseEntity.status(HttpStatus.OK).body(message);  
 		}
 		
@@ -164,15 +162,9 @@ public class ProductService
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				 			 .body(message);
-	
-		//return ResponseEntity.status(HttpStatus.NO_CONTENT).body(message); //a no_content can not have a body response
 	}
 	
-	/* Method 1 of 1
-	* input: String product name
-	* output: String product Name 
-	* objective: Trim, upper case, and delete multiple white spaces in a product name
-    */
+	//trim, upper case, and delete multiple white spaces in a product name (Method 7 of 7)
 	public static String cleanProductName(String productName)
 	{  
 		
@@ -186,7 +178,7 @@ public class ProductService
 		productNameArray = productName.trim().toLowerCase().split(" ");
    	
 	   
-	//for loop, if there is a blank space in the array, toss it, if not store the name in an ArrayList
+	   //for loop, if there is a blank space in the array, toss it, if not store the name in an ArrayList
        for (i=0; i < productNameArray.length; i++)
        {
        	if (productNameArray[i].isBlank()) //if the string is blank/white spaces
@@ -211,5 +203,4 @@ public class ProductService
        return nameString;
 	}
 
-	
 }

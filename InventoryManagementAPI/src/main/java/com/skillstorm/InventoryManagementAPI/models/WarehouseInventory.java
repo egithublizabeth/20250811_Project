@@ -21,8 +21,8 @@ public class WarehouseInventory
 	@EmbeddedId
 	private WarehouseInventoryId id;
 	
+	//to show product information that is linked to a warehouse inventory record
 	@ManyToOne
-	//@JoinColumn(name = "product_id", referencedColumnName = "productId")
 	@JoinColumn(name = "productId")
 	@JsonIgnoreProperties({"warehouseInventory", "productId"})
 	private Product product;
@@ -31,7 +31,6 @@ public class WarehouseInventory
 	public WarehouseInventory() 
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public WarehouseInventory(WarehouseInventoryId id, Product product) {
@@ -40,6 +39,7 @@ public class WarehouseInventory
 		this.product = product;
 	}
 
+	//getters & setters
 	public WarehouseInventoryId getId() {
 		return id;
 	}
@@ -55,6 +55,5 @@ public class WarehouseInventory
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
 
 }

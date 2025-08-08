@@ -19,7 +19,7 @@ public class OrderProductsService
 		this.repo = repo;
 	}
 	
-	//find all Order Products with error response
+	//find all Order Products with Error Response (Method 1 of 3)
 	public ResponseEntity<Iterable<OrderProducts>> findAllOrderProducts()
 	{
 		Iterable<OrderProducts> ordersProducts = this.repo.findAll();
@@ -29,7 +29,7 @@ public class OrderProductsService
 		return ResponseEntity.ok(ordersProducts);
 	}
 	
-	//find all Order Products by Order ID with Error Response
+	//find all Order Products by Order ID with Error Response (Method 2 of 3)
 	public ResponseEntity<Iterable<OrderProducts>> findByOrderId(int id)
 	{
 		Iterable<OrderProducts> warehouseOrders = this.repo.findByOrderId(id);
@@ -40,7 +40,7 @@ public class OrderProductsService
 		
 	}
 	
-	//find all Order Products by Product Id with error response
+	//find all Order Products by Product Id with Error Response (Method 3 of 3)
 	public ResponseEntity<Iterable<OrderProducts>> findByProductId(int productId)
 	{
 		Iterable<OrderProducts> warehouseOrders = this.repo.findByProductId(productId);
@@ -49,4 +49,5 @@ public class OrderProductsService
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		return ResponseEntity.ok(warehouseOrders);
 	}
+	
 }

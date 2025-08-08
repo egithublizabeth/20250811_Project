@@ -15,8 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
+//Class to handle Exceptions
 public class GlobalExceptionHandler {
-	//used to handle ie @Valid @Validation
+	/* used to handle ie @Valid @Validation on the method level(it comes from spring web) 
+		in this case this class will be used for our DTO object (POST with response body input)
+		b/c valid annotations are not set in DTO we never hit this exception
+	*/
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(
             MethodArgumentNotValidException ex) 
@@ -29,7 +33,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    //used to handle variable constraints ie @NotNull
+    //used to handle variable constraints ie @NotNull (coming from hibernate)
 	@ExceptionHandler(ConstraintViolationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) 
@@ -49,9 +53,8 @@ public class GlobalExceptionHandler {
 	     //add key value pair to the object to be displayed in the response body
 	     responseBody.put("Validation Error(s) Message", errorMessage); 
 	
-	     //return and error response with validation error message - returns a javascript object
+	     //return and error response with validation error message - returns a java script object
 	     return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);  
-	
 	 }
      
      //Used to handle primitive url parameter validation in a method parameter @validation
@@ -70,11 +73,7 @@ public class GlobalExceptionHandler {
        responseBody.put("Validation Error(s) Message", errors); 
        
        //return and error response with validation error message - returns a java script object
-       return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);  
-       
+       return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);   
      }
-
-     
-         
      
 }

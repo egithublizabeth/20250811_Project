@@ -16,19 +16,19 @@ import jakarta.transaction.Transactional;
 public interface WarehouseInventoryRepository extends CrudRepository < WarehouseInventory, WarehouseInventoryId>
 {
 	
-	//method to see all available inventory/products associated to a warehouse
+	//method to see all available inventory/products associated to a warehouse (Method 1 of 6)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_inventory where warehouse_id = ?1", nativeQuery = true)
 	Iterable<WarehouseInventory> findByWarehouseId(int warehouseId);
 	
-	//method to see all warehouses that hold a specific product
+	//method to see all warehouses that hold a specific product (Method 2 of 6)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_inventory where product_id = ?1" , nativeQuery = true)
 	Iterable<WarehouseInventory> findByProductId(int productId);
 
-	//find the products that are BELOW the MINIMUM threshold or within range
+	//find the products that are BELOW the MINIMUM threshold or within range (Method 3 of 6)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_inventory as a "
@@ -38,7 +38,7 @@ public interface WarehouseInventoryRepository extends CrudRepository < Warehouse
 			+ ")" , nativeQuery = true)
 	Iterable<WarehouseInventory> findProductBelowByWarehouse(int warehouseId, int threshold);
 	
-	//find the products that are ABOVE the MAXIMUM threshold or within range
+	//find the products that are ABOVE the MAXIMUM threshold or within range (Method 4 of 6)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_inventory as a "
@@ -48,8 +48,7 @@ public interface WarehouseInventoryRepository extends CrudRepository < Warehouse
 			+ ")" , nativeQuery = true)
 	Iterable<WarehouseInventory> findProductAboveByWarehouse(int warehouseId, int threshold);
 	
-	
-	//find the most expensive product(s) in a warehouse and return limitValue records
+	//find the most expensive product(s) in a warehouse and return limitValue records (Method 5 of 6)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT a.warehouse_id, a.product_id, a.product_qty, b.price, b.product_name, "
@@ -61,7 +60,7 @@ public interface WarehouseInventoryRepository extends CrudRepository < Warehouse
 					+ "ORDER BY b.price DESC" , nativeQuery = true)
 	List<WarehouseInventory> findByWarehouseMaxProductPrice(int warehouseId);
 	
-	//find the cheapest product(s) in a warehouse and return limitValue records
+	//find the cheapest product(s) in a warehouse and return limitValue records (Method 6 of 6)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT a.warehouse_id, a.product_id, a.product_qty, b.price, b.product_name, "

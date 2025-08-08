@@ -14,9 +14,9 @@ import jakarta.persistence.Table;
 public class Warehouse 
 {
 	//table fields/columns/properties
-	@Id
+	@Id 						//primary key
 	@Column
-	private int warehouseId;  //primary key
+	private int warehouseId;  
 	
 	//to show a city & state associated with each warehouse record
 	@ManyToOne
@@ -24,6 +24,7 @@ public class Warehouse
 	@JsonIgnoreProperties({"cityId"})
 	private City city;
 
+	//constructors
 	public Warehouse() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,7 +35,8 @@ public class Warehouse
 		this.warehouseId = warehouseId;
 		this.city = city;
 	}
-
+	
+	//getters and setters
 	public int getWarehouseId() {
 		return warehouseId;
 	}
@@ -50,10 +52,5 @@ public class Warehouse
 	public void setCity(City city) {
 		this.city = city;
 	}
-	
-	
-	
-	
-	
 	
 }

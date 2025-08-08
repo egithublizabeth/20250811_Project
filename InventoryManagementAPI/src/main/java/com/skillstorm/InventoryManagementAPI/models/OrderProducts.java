@@ -33,6 +33,4 @@ public class OrderProducts
 		this.id = id;
 	}
 	
-	
-
 }

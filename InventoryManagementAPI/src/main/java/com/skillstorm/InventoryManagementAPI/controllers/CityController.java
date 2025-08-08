@@ -22,17 +22,18 @@ public class CityController
 		this.service = service;
 	}
 	
-	//find all Products with Error Response
+	//find all cities with Error Response (Method 1 of 2)
 	@GetMapping
 	public ResponseEntity<Iterable<City>> findAllCity()
 	{
 		return this.service.findAllCity();
 	}
 	
-	//find by Product ID with Error Response
+	//find a city by ID with Error Response (Method 2 of 2)
 	@GetMapping("/{cityId}")
 	public ResponseEntity<City> findByIDCity(@PathVariable("cityId") int id)
 	{
 		return this.service.findByIDCity(id);
 	}
+	
 }

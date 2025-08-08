@@ -41,7 +41,8 @@ public class State
 		this.stateName = stateName;
 		this.cities = cities;
 	}
-
+	
+	//getters and setters
 	public int getStateId() {
 		return stateId;
 	}
@@ -65,7 +66,5 @@ public class State
 	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
-
-
 	
 }

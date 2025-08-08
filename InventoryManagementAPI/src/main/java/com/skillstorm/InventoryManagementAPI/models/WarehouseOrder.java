@@ -69,7 +69,6 @@ public class WarehouseOrder
 
 		public void setReceivedDate(String receivedDate) {
 			this.receivedDate = receivedDate;
-		}
-		
+		}	
 		
 }

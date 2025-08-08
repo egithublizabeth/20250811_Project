@@ -20,7 +20,7 @@ public class WarehouseInventoryService
 		this.repo = repo;
 	}
 	
-	//find all warehouse inventory with error response
+	//find all warehouse inventory with error response (Method 1 of 7)
 	public ResponseEntity<Iterable<WarehouseInventory>> findAllWarehouseInventory()
 	{
 		Iterable<WarehouseInventory> warehouseInventories = this.repo.findAll();
@@ -31,7 +31,7 @@ public class WarehouseInventoryService
 		return ResponseEntity.ok(warehouseInventories);
 	}
 	
-	//find a Warehouse Inventory by ID with Error Response
+	//find a Warehouse Inventory by ID with Error Response (Method 2 of 7)
 	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseId(int warehouseId)
 	{		
 		Iterable<WarehouseInventory> warehouseInventories = this.repo.findByWarehouseId(warehouseId);
@@ -42,7 +42,7 @@ public class WarehouseInventoryService
 		return ResponseEntity.ok(warehouseInventories);
 	}
 	
-	//find a all the Warehouses that carry/hold a specific Product by ID with Error Response
+	//find all the warehouses that has this Product ID in stock with Error Response (Method 3 of 7)
 	public ResponseEntity<Iterable<WarehouseInventory>> findByProductId(int productId)
 	{		
 		Iterable<WarehouseInventory> warehouses = this.repo.findByProductId(productId);
@@ -53,29 +53,7 @@ public class WarehouseInventoryService
 		return ResponseEntity.ok(warehouses);
 	}
 	
-	//find the most expensive product(s) in a warehouse and return limitValue records
-	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMaxProductPrice(int warehouseId, int limitValue)
-	{
-		Iterable<WarehouseInventory> warehouses = this.repo.findByWarehouseMaxProductPrice(warehouseId).stream().limit(limitValue).collect(Collectors.toList());
-		
-		if (!warehouses.iterator().hasNext())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		
-		return ResponseEntity.ok(warehouses);
-	}
-	
-	//find the cheapest product(s) in a warehouse and return limitValue records
-	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMinProductPrice(int warehouseId, int limitValue)
-	{
-		Iterable<WarehouseInventory> warehouses = this.repo.findByWarehouseMinProductPrice(warehouseId).stream().limit(limitValue).collect(Collectors.toList());
-		
-		if (!warehouses.iterator().hasNext())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		
-		return ResponseEntity.ok(warehouses);
-	}
-	
-	//find the products that are BELOW the MINIMUM threshold or within range
+	//find the products that are BELOW the MINIMUM threshold or within range (Method 4 of 7)
 	public ResponseEntity<Iterable<WarehouseInventory>> findProductBelowByWarehouse(int warehouseId, int threshold)
 	{
 		Iterable<WarehouseInventory> warehouses = this.repo.findProductBelowByWarehouse(warehouseId, threshold);
@@ -86,10 +64,32 @@ public class WarehouseInventoryService
 		return ResponseEntity.ok(warehouses);
 	}
 	
-	//find the products that are ABOVE the MAXIMUM threshold or within range
+	//find the products that are ABOVE the MAXIMUM threshold or within range (Method 5 of 7)
 	public ResponseEntity<Iterable<WarehouseInventory>> findProductAboveByWarehouse(int warehouseId, int threshold)
 	{
 		Iterable<WarehouseInventory> warehouses = this.repo.findProductAboveByWarehouse(warehouseId, threshold);
+		
+		if (!warehouses.iterator().hasNext())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		
+		return ResponseEntity.ok(warehouses);
+	}
+	
+	//find the most expensive product(s) in a warehouse and return limitValue records (Method 6 of 7)
+	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMaxProductPrice(int warehouseId, int limitValue)
+	{
+		Iterable<WarehouseInventory> warehouses = this.repo.findByWarehouseMaxProductPrice(warehouseId).stream().limit(limitValue).collect(Collectors.toList());
+		
+		if (!warehouses.iterator().hasNext())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		
+		return ResponseEntity.ok(warehouses);
+	}
+	
+	//find the cheapest product(s) in a warehouse and return limitValue records (Method 7 of 7)
+	public ResponseEntity<Iterable<WarehouseInventory>> findByWarehouseMinProductPrice(int warehouseId, int limitValue)
+	{
+		Iterable<WarehouseInventory> warehouses = this.repo.findByWarehouseMinProductPrice(warehouseId).stream().limit(limitValue).collect(Collectors.toList());
 		
 		if (!warehouses.iterator().hasNext())
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

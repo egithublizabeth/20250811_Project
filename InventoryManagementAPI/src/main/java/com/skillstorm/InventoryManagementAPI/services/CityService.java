@@ -22,7 +22,7 @@ public class CityService
 		this.repo = repo;
 	}
 	
-	//find all Cities with error response
+	//find all cities with Error Response (Method 1 of 2)
 	public ResponseEntity<Iterable<City>> findAllCity()
 	{
 		Iterable<City> cities = this.repo.findAll();
@@ -32,7 +32,7 @@ public class CityService
 		return ResponseEntity.ok(cities);
 	}
 	
-	//find a City by ID with Error Response
+	//find a city by ID with Error Response (Method 2 of 2)
 	public ResponseEntity<City> findByIDCity(int id)
 	{
 		Optional<City> city = this.repo.findById(id);
@@ -40,6 +40,6 @@ public class CityService
 		if (city.isPresent())
 			return ResponseEntity.ok(city.get());
 		return ResponseEntity.notFound().build();
-		
 	}
+	
 }

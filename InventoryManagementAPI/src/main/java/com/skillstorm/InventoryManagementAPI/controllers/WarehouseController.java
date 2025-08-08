@@ -21,14 +21,14 @@ public class WarehouseController
 		this.service = service;
 	}
 	
-	//find all Products with Error Response
+	//find all Warehouses with Error Response (Method 1 of 2)
 	@GetMapping
 	public ResponseEntity<Iterable<Warehouse>> findAllWarehouse()
 	{
 		return this.service.findAllWarehouse();
 	}
 	
-	//find by Product ID with Error Response
+	//find a Warehouse by ID with Error Response (Method 2 of 2)
 	@GetMapping("/{warehouseId}")
 	public ResponseEntity<Warehouse> findByIDWarehouse(@PathVariable("warehouseId") int id)
 	{

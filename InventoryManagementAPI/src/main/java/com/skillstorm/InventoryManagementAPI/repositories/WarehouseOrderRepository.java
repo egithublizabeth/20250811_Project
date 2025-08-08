@@ -13,8 +13,7 @@ import jakarta.transaction.Transactional;
 
 public interface WarehouseOrderRepository extends CrudRepository<WarehouseOrder, Integer>
 {
-
-	//method to see all orders associated to a warehouse
+	//method to see all orders associated to a warehouse (Method 1 of 1)
 	@Transactional
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_order where warehouse_id = ?1 order by order_date desc", nativeQuery = true)

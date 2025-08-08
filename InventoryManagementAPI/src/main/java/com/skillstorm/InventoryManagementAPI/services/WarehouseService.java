@@ -22,7 +22,7 @@ public class WarehouseService
 		this.repo = repo;
 	}
 	
-	//find all Warehouses with error response
+	//find all Warehouses with Error Response (Method 1 of 2)
 	public ResponseEntity<Iterable<Warehouse>> findAllWarehouse()
 	{
 		Iterable<Warehouse> warehouses = this.repo.findAll();
@@ -32,7 +32,7 @@ public class WarehouseService
 		return ResponseEntity.ok(warehouses);
 	}
 	
-	//find a Warehouse by ID with Error Response
+	//find a Warehouse by ID with Error Response (Method 2 of 2)
 	public ResponseEntity<Warehouse> findByIDWarehouse(int id)
 	{
 		Optional<Warehouse> warehouse = this.repo.findById(id);
