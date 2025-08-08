@@ -1,5 +1,69 @@
 # Inventory Management API Project
 
+### **Project Objective** 
+Create an inventory management solution that will enable an administrator at a given company to manage the entities at any of its warehouses. The administrator should possess the ability to view, add, remove, and alter any of the entities within that company’s warehouses. Your web-based API should provide appropriate, well documented endpoints for each operation.
+
+The application should also take into consideration possible edge cases such as a warehouse having a maximum capacity and handling the addition of items that would cause the warehouse to exceed its capacity.
+
+------------------------------------
+
+### **Project Requirements**  
+Functional Requirements:
+- Must be a backend application consisting of:
+  - Java Spring Boot REST API
+  - MySQL Database
+- Code should be available in a public GitHub repository
+- Include a schema.sql file to recreate your database and a data.sql file with at least 2 warehouses and 20 products
+- Possesses all required CRUD functionality
+- Handles edge cases effectively
+
+Non-Functional Requirements:
+- Well-documented code
+- Well-documented API endpoints
+- Code upholds industry best practices (SOLID/DRY)
+- Database is normalized
+
+------------------------------------
+
+### **Gobi Company**  
+
+This is a fuax company, it rivals Amazon as a shopping platform. This Inventory Management System is based off of re-stocking a warehouse's stock, its main client is a warehouse, not a customer making a purchase from Gobi.
+
+
+<hr>
+
+<!-- Beginning of gobi ER image    -->
+
+### **Gobi Entity Relationship(ER) Diagram**
+
+<details>
+<summary>Click Here to See Image | Legend: Crows Feet = Many & 2 Ticks = One </summary>
+<img alt="ERR_Diagram_20250725.png" src="https://github.com/egithublizabeth/20250811_Project/blob/main/ERR_Diagram_20250725.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 fzFXnm">
+</details>
+
+<!-- End of gobi ER image    -->
+
+<hr>
+
+
+### **Gobi Edge Cases**  
+
+A Gobi warehouse product quantity can be below zero or it's set minimum threshold and it can also be greater than it's set maximum capacity.
+
+*Below zero or set minimum threshold*:
+  - Triggers the Price Department to review selling cost of the product.
+      - Increase Selling Cost, Decrease Quantity Sold
+   
+  - Local Market Buying Habits i.e Market 'A' prefers item 'X' more than Market 'B'
+
+
+*Above set maximum threshold*:
+  - Triggers the Price Department to review selling cost of the product.
+    - Decrease Selling Cost, Increase Quantity Sold
+   
+  - Local Market Buying Habits i.e Market 'A' prefers item 'X' less than Market 'B'
+------------------------------------
+
 <!-- Begining of Required Endpoints -->
 ### **Required Endpoints**  
 7 Endpoints
@@ -245,4 +309,6 @@
 <!-- End of Extra Endpoints -->
 
 <hr>
+
+
 
