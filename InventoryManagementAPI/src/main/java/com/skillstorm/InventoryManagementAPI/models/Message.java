@@ -43,7 +43,6 @@ public class Message
 		this.info = info;
 	}
 	
-	
 	//setters and getters
 	public String getmessage() 
 	{
@@ -52,7 +51,6 @@ public class Message
 
 	public void setmessage(String message) 
 	{
-		
 		switch(message) 
 		{
 			case "validCreate":
@@ -75,10 +73,6 @@ public class Message
 				this.message = "Cheers! The record was deleted.";
 				break;
 				
-			case "validDeleteProduct":
-				this.message = "Cheers! The record was deleted. Note this causes a 500 Error Response because the relationship between warehouse_inventory(child) table to product(parent) table: 'on delete' equal 'restrict'.";
-				break;
-				
 			case "invalidDelete":
 				this.message = "Yikes! The record does not exist(DNE), try again.";
 				break;
@@ -94,7 +88,6 @@ public class Message
 		return product;
 	}
 
-
 	public void setProduct(Product product) {
 		this.product = product;
 	}
@@ -106,7 +99,6 @@ public class Message
 	public void setInfo(Map<String, Integer> info) {
 		this.info = info;
 	}
-	
 	
 
 }
