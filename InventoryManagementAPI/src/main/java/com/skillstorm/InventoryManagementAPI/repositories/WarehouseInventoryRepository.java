@@ -33,7 +33,7 @@ public interface WarehouseInventoryRepository extends CrudRepository < Warehouse
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_inventory as a "
 			+ "where a.warehouse_id = ?1 and"
-			+ "( ( a.product_qty between  (a.product_min_qty - ?2) AND (a.product_min_qty + ?2) )"
+			+ "( ( a.product_qty <= (a.product_min_qty + ?2) )"
 			+ "	 or (a.product_qty <= a.product_min_qty)"
 			+ ")" , nativeQuery = true)
 	Iterable<WarehouseInventory> findProductBelowByWarehouse(int warehouseId, int threshold);
@@ -43,7 +43,7 @@ public interface WarehouseInventoryRepository extends CrudRepository < Warehouse
 	@Modifying
 	@Query(value = "SELECT * FROM warehouse_inventory as a "
 			+ "where a.warehouse_id = ?1 and"
-			+ "( ( a.product_qty between (a.product_max_qty - ?2) AND (a.product_max_qty + ?2) )"
+			+ "( ( a.product_qty >= (a.product_max_qty - ?2) )"
 			+ "	 or (a.product_qty >= a.product_max_qty)"
 			+ ")" , nativeQuery = true)
 	Iterable<WarehouseInventory> findProductAboveByWarehouse(int warehouseId, int threshold);

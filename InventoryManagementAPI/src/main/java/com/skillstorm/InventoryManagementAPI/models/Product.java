@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -39,7 +40,7 @@ public class Product
 		private double price;
 		
 		//to show a list of warehouse inventory record(s) associated with each product id
-		@OneToMany(mappedBy = "product")
+		@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
 		@JsonIgnoreProperties({"product"})
 		private List<WarehouseInventory> warehouseInventory;
 		

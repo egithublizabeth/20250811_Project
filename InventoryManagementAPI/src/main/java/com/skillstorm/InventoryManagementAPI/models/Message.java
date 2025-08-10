@@ -75,6 +75,10 @@ public class Message
 				this.message = "Cheers! The record was deleted.";
 				break;
 				
+			case "validDeleteProduct":
+				this.message = "Cheers! The record was deleted. Note this causes a 500 Error Response because the relationship between warehouse_inventory(child) table to product(parent) table: 'on delete' equal 'restrict'.";
+				break;
+				
 			case "invalidDelete":
 				this.message = "Yikes! The record does not exist(DNE), try again.";
 				break;
